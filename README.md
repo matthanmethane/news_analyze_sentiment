@@ -14,3 +14,7 @@ Please download the dataset from below link
 ```bash
   streamlit run main.py
 ```
+
+## Demo Video
+https://user-images.githubusercontent.com/10554125/161488846-26248d89-ad19-4b61-98b6-186089490143.mp4
+
