@@ -9,7 +9,7 @@ from transformers import DistilBertForSequenceClassification, DistilBertTokenize
 from statistics import mean
 
 def load_sentiment_model():
-    model = DistilBertForSequenceClassification.from_pretrained('checkpoint-6500')
+    model = DistilBertForSequenceClassification.from_pretrained('final')
     tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased',num_labels=3)
     sentiment = pipeline("sentiment-analysis", model=model, tokenizer=tokenizer)
     return sentiment 
