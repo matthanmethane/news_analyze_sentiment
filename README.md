@@ -2,8 +2,8 @@
 
 ## Download Dataset from below link 
 Please download the dataset from below link 
-1. model_best: [https://drive.google.com/drive/folders/16VFT9Wu2m38-xDvFFW_Kf3aZFSx289zf?usp=sharing](Here)
-2. checkpoint_6500: [https://drive.google.com/drive/folders/163GKHmeRaZcFkcwonM6RvKea157y2tfU?usp=sharing](Here)
+1. model_best: [Here](https://drive.google.com/drive/folders/16VFT9Wu2m38-xDvFFW_Kf3aZFSx289zf?usp=sharing)
+2. final: [Here](https://drive.google.com/drive/folders/163GKHmeRaZcFkcwonM6RvKea157y2tfU?usp=sharing)
 
 ## Downloading necessary libraries
 ```bash
