@@ -2,8 +2,10 @@
 
 ## Download Dataset from below link 
 Please download the dataset from below link 
-1. model_best: [Here](https://drive.google.com/drive/folders/16VFT9Wu2m38-xDvFFW_Kf3aZFSx289zf?usp=sharing)
-2. final: [Here](https://drive.google.com/drive/folders/163GKHmeRaZcFkcwonM6RvKea157y2tfU?usp=sharing)
+1. model_best: [Here](https://www.dropbox.com/s/5skzsbpbk8wha7j/model-best.zip?dl=0)
+2. final: [Here](https://www.dropbox.com/s/6ozggyzbwoz2cnf/final.zip?dl=0)
+
+Extract it inside the same directory as main.py
 
 ## Downloading necessary libraries
 ```bash
