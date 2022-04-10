@@ -8,6 +8,8 @@ from st_aggrid import AgGrid
 from transformers import DistilBertForSequenceClassification, DistilBertTokenizerFast, pipeline
 from statistics import mean
 
+from utils import replace_corefs
+import socket,pickle
 
 def load_sentiment_model():
     model = DistilBertForSequenceClassification.from_pretrained('final')
@@ -43,6 +45,24 @@ def get_org_score(text):
     # return pd.DataFrame.from_dict({org: (mean(scores)-1) for org, scores in org_list.items()})
     return [{'org_name': org, 'score': convert_score_word(mean(scores))} for org, scores in org_list.items()]
 
+def get_coref_score(text):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    print("Connecting to port 19000")
+    sock.connect(('localhost', 19000))
+
+    data_s = pickle.dumps(text)
+    print("Sending to port 19000")
+    sock.send(data_s)
+
+    print("Receiving from port 19000")
+
+    data = sock.recv(4096)
+    clusters = pickle.loads(data)
+    sock.close()
+
+    text = replace_corefs(nlp(text),clusters)
+
+    return get_org_score(text),text
 
 nlp = spacy.load('model-best')
 sentiment = load_sentiment_model()
@@ -69,5 +89,21 @@ st.subheader('Overall Sentiment Score')
 st.text(score)
 st.subheader('Detailed Sentiment Score')
 st.dataframe(df_score)
+
+try:
+    coref_score,coref_text = get_coref_score(default_text)
+
+
+    st.subheader('Coreference Resolution')
+
+    doc2 = nlp(coref_text)
+
+    visualize_ner(doc2, labels=nlp.get_pipe("ner").labels, key='coref_ner',title="Resolved Entities")
+
+    st.subheader('Sentiment Score with coreference resolution')
+    st.dataframe(coref_score)
+
+except:
+    st.subheader('Run the corefServer at port 19000 to enable coreference resolution')
+
 # spacy_streamlit.visualize(models, default_text, visualizers=visualizers)
-visualize_ner(doc, labels=nlp.get_pipe("ner").labels)
